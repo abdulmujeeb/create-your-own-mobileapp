@@ -1,0 +1,54 @@
+# Build a docker container and deploy it to ACR
+# Add steps that scan dockerfile, docker for vulnerabilities, save container scan reports, deploy, and more:
+
+trigger:
+- master
+
+variables:
+  vmImageName: 'ubuntu-latest'
+  dockerImageName: 'mobileapi'
+  containerRegistry: 'azureuaesaturday-acr'
+  containerRegistryURL: 'azureuaesaturday.azurecr.io'
+
+steps:
+
+  - task: Docker@2
+    displayName: Build Docker Image
+    inputs:
+        repository: $(dockerImageName)
+        command: build
+        Dockerfile: Dockerfile
+
+  - script: |
+        curl -s https://ci-tools.anchore.io/inline_scan-v0.4.1 | bash -s -- -p -r $(dockerImageName)
+    displayName: 'Scan Docker Image for Vulnerabilities'
+  
+  - task: Docker@2
+    displayName: Login to ACR
+    inputs:
+      command: login
+      containerRegistry: $(containerRegistry)
+
+  - script: |
+      docker tag $(dockerImageName) $(containerRegistryURL)/$(dockerImageName)
+
+  - task: Docker@2
+    displayName: Push Docker Image
+    inputs:
+        repository: $(dockerImageName)
+        command: push
+        containerRegistry: $(containerRegistry)
+
+#  - task: CopyFiles@2
+#    displayName: Copy Anchore Scan Reports
+#    inputs:
+#      SourceFolder: './anchore-reports/'
+#      TargetFolder: '$(Build.ArtifactStagingDirectory)/anchore-reports'
+
+#  - task: PublishBuildArtifacts@1
+#    displayName: 'Publish Anchore Scan Reports'
+#    inputs:
+#      PathtoPublish: '$(Build.ArtifactStagingDirectory)/anchore-reports'
+
+
+
