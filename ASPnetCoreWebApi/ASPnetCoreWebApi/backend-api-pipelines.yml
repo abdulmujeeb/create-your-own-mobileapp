@@ -9,6 +9,7 @@ variables:
   dockerImageName: 'mobileapi'
   containerRegistry: 'azureuaesaturday-acr'
   containerRegistryURL: 'azureuaesaturday.azurecr.io'
+  dockerFilePath: '**/Dockerfile'
 
 steps:
 
@@ -17,7 +18,7 @@ steps:
     inputs:
         repository: $(dockerImageName)
         command: build
-        Dockerfile: Dockerfile
+        Dockerfile: $(dockerFilePath)
 
   - script: |
         curl -s https://ci-tools.anchore.io/inline_scan-v0.4.1 | bash -s -- -p -r $(dockerImageName)
