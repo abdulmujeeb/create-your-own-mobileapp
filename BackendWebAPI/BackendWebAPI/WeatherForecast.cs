@@ -1,6 +1,6 @@
 using System;
 
-namespace ASPnetCoreWebApi
+namespace BackendWebAPI
 {
     public class WeatherForecast
     {
