@@ -8,6 +8,7 @@ variables:
   vmImageName: 'ubuntu-latest'
   dockerImageName: 'mobileapi'
   containerRegistry: 'azureuaesaturday-acr'
+  tag: 'v1'
   containerRegistryURL: 'azureuaesaturday.azurecr.io'
   dockerFilePath: '**/Dockerfile'
   apiWorkingDirectory: $(Build.SourcesDirectory)/BackendWebAPI
@@ -23,7 +24,7 @@ steps:
       
 
   - script: |
-      docker build -f $(dockerFilePath) -t $(dockerImageName) .
+      docker build -f $(dockerFilePath) -t $(dockerImageName):$(tag) .
     workingDirectory: $(apiWorkingDirectory)
     
 
@@ -38,12 +39,12 @@ steps:
       containerRegistry: $(containerRegistry)
 
   - script: |
-      docker tag $(dockerImageName) $(containerRegistryURL)/$(dockerImageName)
+      docker tag $(dockerImageName):$(tag) $(containerRegistryURL)/$(dockerImageName):$(tag)
 
   - task: Docker@2
     displayName: Push Docker Image
     inputs:
-        repository: $(dockerImageName)
+        repository: $(dockerImageName):$(tag)
         command: push
         containerRegistry: $(containerRegistry)
 
