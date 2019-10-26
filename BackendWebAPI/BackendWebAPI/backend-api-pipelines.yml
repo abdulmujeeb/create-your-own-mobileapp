@@ -47,7 +47,7 @@ steps:
         repository: $(dockerImageName)
         command: push
         containerRegistry: $(containerRegistry)
-        tag: |
+        tags: |
           $(tag)
 
 #  - task: CopyFiles@2
