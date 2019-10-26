@@ -29,14 +29,14 @@ steps:
     continueOnError: true
     displayName: Docker Lint
 
-  - script: |
-      docker build -f $(dockerFilePath) -t $(dockerImageName):$(tag) .
-    workingDirectory: $(apiWorkingDirectory)
-    displayName: Build a docker file 
-
-  - script: |
-        curl -s https://ci-tools.anchore.io/inline_scan-v0.4.1 | bash -s -- -p -r $(dockerImageName):$(tag)
-    displayName: 'Scan Docker Image for Vulnerabilities'
+#  - script: |
+#      docker build -f $(dockerFilePath) -t $(dockerImageName):$(tag) .
+#    workingDirectory: $(apiWorkingDirectory)
+#    displayName: Build a docker file 
+#
+#  - script: |
+#        curl -s https://ci-tools.anchore.io/inline_scan-v0.4.1 | bash -s -- -p -r $(dockerImageName):$(tag)
+#    displayName: 'Scan Docker Image for Vulnerabilities'
   
   - task: Docker@2
     displayName: Login to ACR
@@ -56,16 +56,16 @@ steps:
         tags: |
           $(tag)
 
-  - task: CopyFiles@2
-    displayName: Copy Anchore Scan Reports
-    inputs:
-      SourceFolder: './anchore-reports/'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)/anchore-reports'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Anchore Scan Reports'
-    inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)/anchore-reports'
+#  - task: CopyFiles@2
+#    displayName: Copy Anchore Scan Reports
+#    inputs:
+#      SourceFolder: './anchore-reports/'
+#      TargetFolder: '$(Build.ArtifactStagingDirectory)/anchore-reports'
+#
+#  - task: PublishBuildArtifacts@1
+#    displayName: 'Publish Anchore Scan Reports'
+#    inputs:
+#      PathtoPublish: '$(Build.ArtifactStagingDirectory)/anchore-reports'
 
 
 
