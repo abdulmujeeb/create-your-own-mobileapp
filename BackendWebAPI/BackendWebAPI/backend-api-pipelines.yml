@@ -12,6 +12,7 @@ variables:
   containerRegistryURL: 'azureuaesaturday.azurecr.io'
   dockerFilePath: '**/Dockerfile'
   apiWorkingDirectory: $(Build.SourcesDirectory)/BackendWebAPI
+  absoluteDockerfilePath: $(apiWorkingDirectory)/BackendWebAPI
 
 steps:
 
@@ -24,7 +25,7 @@ steps:
       
 
   - script: |
-      docker run --rm -i hadolint/hadolint < $(dockerFilePath)
+      docker run --rm -i hadolint/hadolint < $(absoluteDockerfilePath)/Dockerfile
     continueOnError: true
     displayName: Docker Lint
 
@@ -55,16 +56,16 @@ steps:
         tags: |
           $(tag)
 
-#  - task: CopyFiles@2
-#    displayName: Copy Anchore Scan Reports
-#    inputs:
-#      SourceFolder: './anchore-reports/'
-#      TargetFolder: '$(Build.ArtifactStagingDirectory)/anchore-reports'
+  - task: CopyFiles@2
+    displayName: Copy Anchore Scan Reports
+    inputs:
+      SourceFolder: './anchore-reports/'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/anchore-reports'
 
-#  - task: PublishBuildArtifacts@1
-#    displayName: 'Publish Anchore Scan Reports'
-#    inputs:
-#      PathtoPublish: '$(Build.ArtifactStagingDirectory)/anchore-reports'
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Anchore Scan Reports'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/anchore-reports'
 
 
 
