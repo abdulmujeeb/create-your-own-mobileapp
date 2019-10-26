@@ -24,15 +24,17 @@ steps:
 #        Dockerfile: $(dockerFilePath)
       
 
-  - script: |
-      docker run --rm -i hadolint/hadolint < $(absoluteDockerfilePath)/Dockerfile
-    continueOnError: true
-    displayName: Docker Lint
-
 #  - script: |
-#      docker build -f $(dockerFilePath) -t $(dockerImageName):$(tag) .
-#    workingDirectory: $(apiWorkingDirectory)
-#    displayName: Build a docker file 
+#      docker run --rm -i hadolint/hadolint < $(absoluteDockerfilePath)/Dockerfile
+#    continueOnError: true
+#    displayName: Docker Lint
+
+
+  - script: |
+      docker build -f $(dockerFilePath) -t $(dockerImageName):$(tag) .
+    workingDirectory: $(apiWorkingDirectory)
+    displayName: Build a docker file 
+
 #
 #  - script: |
 #        curl -s https://ci-tools.anchore.io/inline_scan-v0.4.1 | bash -s -- -p -r $(dockerImageName):$(tag)
