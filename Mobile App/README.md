@@ -6,17 +6,17 @@ Let’s write a mobile app which displays some classifieds and show you the list
 
 1.    Open Visual Studio and Create a New Project
 
-![image-20191101171757240](E:\Meetups\Full Solution - Azure Saturday\create-your-own-mobileapp\Mobile App\img\1)
+![Create Project](./img/1.jpg)
 
 2.    Select Mobile App(Xamarin.Forms) template from the list
 
-![image-20191101171850144](E:\Meetups\Full Solution - Azure Saturday\create-your-own-mobileapp\Mobile App\img\2.jpg)
+![Select Project Template](./img/2.jpg)
 
 3.    Give a Name to your project and select a location to save the project and Click on Create
 
 4.    Select “Blank” template. Choose the platforms you would like to develop your app for. Click OK
 
-![image-20191101171944779](E:\Meetups\Full Solution - Azure Saturday\create-your-own-mobileapp\Mobile App\img\3.jpg)
+![Select Xamarin Template](./img/3.jpg)
 
 5.    The generated solution contains 3 projects
 
@@ -26,7 +26,7 @@ Let’s write a mobile app which displays some classifieds and show you the list
 
 	c.    Xamarin.iOS
 
-![](E:\Meetups\Full Solution - Azure Saturday\create-your-own-mobileapp\Mobile App\img\4.jpg)
+![Project Structure](./img/4.jpg)
 
 6.    We will be working only on the shared code which will be compiled into native code at the time of compilation. The folder structure will be as follows:
 
@@ -42,15 +42,11 @@ Let’s write a mobile app which displays some classifieds and show you the list
 
 9.    Let’s add our classifieds item model. Right click on Models folder -> Add -> Class
 
- ![img](file:///C:/Users/ahmad/AppData/Local/Temp/msohtmlclip1/01/clip_image008.png)
-
-![image-20191101172018239](E:\Meetups\Full Solution - Azure Saturday\create-your-own-mobileapp\Mobile App\img\5.jpg)
+![Add Model Class](./img/5.jpg)
 
 10.  Give the name as “ClassifiedItem” and click Add
 
- ![img](file:///C:/Users/ahmad/AppData/Local/Temp/msohtmlclip1/01/clip_image010.jpg)
-
-![image-20191101172041413](E:\Meetups\Full Solution - Azure Saturday\create-your-own-mobileapp\Mobile App\img\6.jpg)
+![Creating Model Class](./img/6.jpg)
 
 11.  Add the new fields
 
@@ -72,11 +68,11 @@ Let’s write a mobile app which displays some classifieds and show you the list
 
 12.  Now lets add some pages. Right click on the Views Folder -> Add -> New Item
 
-![image-20191101172157072](E:\Meetups\Full Solution - Azure Saturday\create-your-own-mobileapp\Mobile App\img\7.jpg)
+![Add New View](./img/7.jpg)
 
 13.  Select Content Page from Xamarin.Forms Category, Name the page “ListingsPage.xaml” and Click Add
 
-![image-20191101172220592](E:\Meetups\Full Solution - Azure Saturday\create-your-own-mobileapp\Mobile App\img\8.jpg)
+![Create New View](./img/8.jpg)
 
 14.  Repeat the process to add another page called “ListingDetailPage.xaml”
 
@@ -118,11 +114,11 @@ public override string ToString()
 
 19. Let’s add an awesome nuget package for handling images. Go to Tools -> NuGet Package Manager -> Manage Nuget Packages for solution…
 
-![image-20191101172243284](E:\Meetups\Full Solution - Azure Saturday\create-your-own-mobileapp\Mobile App\img\9.jpg)
+![Adding Nuget Package](./img/9.jpg)
 
 20. Click on Browse and search for “ffimageloading”. Install the nuget package in all the projects.
 
-![image-20191101172303055](E:\Meetups\Full Solution - Azure Saturday\create-your-own-mobileapp\Mobile App\img\10.jpg)
+![Selecting Projects for installation](./img/10.jpg)
 
 21. Paste the following code in the ListingPage.xaml file under xmlns:
 
@@ -217,10 +213,12 @@ public ListingDetailPage(ClassifiedItem item)
 29. Congratulations, you just made a classifieds app which navigates to a detail page!
 
 30. Continue your journey of Mobile app development with Xamarin and you shall definitely be an amazing developer. Here are a few resources to give you a head start:
-
-	a. Microsoft Learn Portal
+	
+a. Microsoft Learn Portal
         https://docs.microsoft.com/en-us/learn/browse/?products=xamarin	
-	b. Official DotNet Portal
+	
+b. Official DotNet Portal
         https://dotnet.microsoft.com/learn/xamarin
-	c. Xamarin Official Docs
-	    https://docs.microsoft.com/en-us/xamarin/
+
+c. Xamarin Official Docs
+	https://docs.microsoft.com/en-us/xamarin/
