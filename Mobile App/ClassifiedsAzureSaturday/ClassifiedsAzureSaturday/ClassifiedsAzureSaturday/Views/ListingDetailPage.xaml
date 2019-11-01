@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ClassifiedsAzureSaturday.Views.ListingDetailPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Item Name:" FontSize="Medium" />
+            <Label x:Name="ItemNameTb" FontSize="Small"/>
+            <Label Text="Description:" FontSize="Medium" />
+            <Label x:Name="DescriptionTb" FontSize="Small"/>
+            <Label Text="Price:" FontSize="Medium" />
+            <Label x:Name="PriceTb" FontSize="Small"/>
+            <Label Text="Location:" FontSize="Medium" />
+            <Label x:Name="LocationTb" FontSize="Small"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
